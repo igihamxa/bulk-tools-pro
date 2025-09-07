@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import ToolPage from "./pages/ToolPage";
+import CategoryPage from "./pages/CategoryPage";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +18,12 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/tools/:toolId" element={<ToolPage />} />
+          <Route path="/pdf-tools" element={<CategoryPage />} />
+          <Route path="/image-tools" element={<CategoryPage />} />
+          <Route path="/video-tools" element={<CategoryPage />} />
+          <Route path="/audio-tools" element={<CategoryPage />} />
+          <Route path="/converters" element={<CategoryPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

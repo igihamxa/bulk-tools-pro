@@ -2,41 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Hamxa Tech Tools Design System - Professional Tools Platform
 All colors MUST be HSL.
 */
 
+/* Custom fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @layer base {
   :root {
+    /* Base colors - Professional and clean */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 220 14% 16%;
+    
+    /* Card system */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 220 14% 16%;
+    --card-hover: 0 0% 98%;
+    
+    /* Navigation and popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --popover-foreground: 220 14% 16%;
+    
+    /* Brand colors - Modern blue gradient */
+    --primary: 220 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 220 100% 45%;
+    
+    /* Secondary - Light gray */
+    --secondary: 220 10% 97%;
+    --secondary-foreground: 220 14% 16%;
+    --secondary-hover: 220 10% 95%;
+    
+    /* Muted colors */
+    --muted: 220 13% 95%;
+    --muted-foreground: 220 9% 46%;
+    
+    /* Accent - Vibrant blue */
+    --accent: 220 100% 60%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Status colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    
+    /* UI elements */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 100% 50%;
+    
+    /* Tool category colors */
+    --tool-pdf: 348 83% 55%;
+    --tool-image: 271 81% 56%;
+    --tool-video: 217 91% 60%;
+    --tool-audio: 142 76% 36%;
+    --tool-text: 38 92% 50%;
+    --tool-converter: 280 100% 70%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(220 100% 50%) 0%, hsl(240 100% 60%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(220 100% 50% / 0.1) 0%, hsl(240 100% 60% / 0.1) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 10% 98%) 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(220 13% 91% / 0.5);
+    --shadow-md: 0 4px 6px -1px hsl(220 13% 91% / 0.5), 0 2px 4px -1px hsl(220 13% 91% / 0.3);
+    --shadow-lg: 0 10px 15px -3px hsl(220 13% 91% / 0.5), 0 4px 6px -2px hsl(220 13% 91% / 0.3);
+    --shadow-card: 0 2px 8px hsl(220 13% 91% / 0.15);
+    --shadow-card-hover: 0 8px 25px hsl(220 13% 91% / 0.25);
+    
+    /* Animation */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
+    
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,41 +99,43 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 220 27% 8%;
+    --foreground: 0 0% 95%;
+    
+    --card: 220 27% 10%;
+    --card-foreground: 0 0% 95%;
+    --card-hover: 220 27% 12%;
+    
+    --popover: 220 27% 10%;
+    --popover-foreground: 0 0% 95%;
+    
+    --primary: 220 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 220 100% 65%;
+    
+    --secondary: 220 20% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --secondary-hover: 220 20% 18%;
+    
+    --muted: 220 20% 15%;
+    --muted-foreground: 220 10% 65%;
+    
+    --accent: 220 100% 65%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 220 100% 60%;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(220 100% 60%) 0%, hsl(240 100% 65%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(220 100% 60% / 0.1) 0%, hsl(240 100% 65% / 0.1) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 27% 10%) 0%, hsl(220 27% 12%) 100%);
+    
+    --shadow-card: 0 2px 8px hsl(220 27% 4% / 0.4);
+    --shadow-card-hover: 0 8px 25px hsl(220 27% 4% / 0.6);
   }
 }
 
@@ -100,6 +145,61 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Tool Card Styles */
+  .tool-card {
+    @apply bg-card border border-border rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/20 hover:-translate-y-1 cursor-pointer group;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+  
+  .tool-card:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+  
+  .tool-icon {
+    @apply w-12 h-12 rounded-lg flex items-center justify-center text-white font-semibold text-lg mb-4 transition-transform duration-300 group-hover:scale-110;
+  }
+  
+  .tool-title {
+    @apply text-lg font-semibold text-foreground mb-2;
+  }
+  
+  .tool-description {
+    @apply text-sm text-muted-foreground leading-relaxed;
+  }
+  
+  /* Category specific colors */
+  .tool-pdf {
+    @apply bg-[hsl(var(--tool-pdf))];
+  }
+  
+  .tool-image {
+    @apply bg-[hsl(var(--tool-image))];
+  }
+  
+  .tool-video {
+    @apply bg-[hsl(var(--tool-video))];
+  }
+  
+  .tool-audio {
+    @apply bg-[hsl(var(--tool-audio))];
+  }
+  
+  .tool-text {
+    @apply bg-[hsl(var(--tool-text))];
+  }
+  
+  .tool-converter {
+    @apply bg-[hsl(var(--tool-converter))];
   }
 }
