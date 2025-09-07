@@ -21,7 +21,7 @@ const ToolCard = ({ title, description, icon, category, path, comingSoon }: Tool
   };
 
   const Content = (
-    <div className="tool-card h-full">
+    <div className="tool-card h-full group">
       <div className="flex flex-col h-full">
         <div className={`tool-icon ${categoryColors[category]}`}>
           {icon}
