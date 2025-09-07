@@ -28,6 +28,17 @@ const App = () => (
           <Route path="/converters" element={<CategoryPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/account" element={<Contact />} />
+          <Route path="/blog" element={<Contact />} />
+          <Route path="/help" element={<Contact />} />
+          <Route path="/privacy" element={<Contact />} />
+          <Route path="/terms" element={<Contact />} />
+          <Route path="/cookies" element={<Contact />} />
+          <Route path="/gdpr" element={<Contact />} />
+          <Route path="/api" element={<Contact />} />
+          <Route path="/tutorials" element={<Contact />} />
+          <Route path="/status" element={<Contact />} />
+          <Route path="/changelog" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

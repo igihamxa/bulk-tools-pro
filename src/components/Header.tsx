@@ -14,7 +14,7 @@ const Header = () => {
   const location = useLocation();
 
   const navItems = [
-    { name: 'PDF Tools', path: '/', icon: '📄' },
+    { name: 'PDF Tools', path: '/pdf-tools', icon: '📄' },
     { name: 'Image Tools', path: '/image-tools', icon: '🖼️' },
     { name: 'Video Tools', path: '/video-tools', icon: '🎥' },
     { name: 'Audio Tools', path: '/audio-tools', icon: '🎵' },
@@ -22,7 +22,7 @@ const Header = () => {
   ];
 
   const isActivePath = (path: string) => {
-    if (path === '/') return location.pathname === '/';
+    if (path === '/pdf-tools') return location.pathname === '/' || location.pathname === '/pdf-tools';
     return location.pathname.startsWith(path);
   };
 

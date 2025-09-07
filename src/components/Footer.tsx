@@ -6,7 +6,7 @@ const Footer = () => {
 
   const footerLinks = {
     Tools: [
-      { name: 'PDF Tools', path: '/' },
+      { name: 'PDF Tools', path: '/pdf-tools' },
       { name: 'Image Tools', path: '/image-tools' },
       { name: 'Video Tools', path: '/video-tools' },
       { name: 'Audio Tools', path: '/audio-tools' },
