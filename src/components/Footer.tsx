@@ -16,13 +16,11 @@ const Footer = () => {
       { name: 'About Us', path: '/about' },
       { name: 'Contact', path: '/contact' },
       { name: 'Blog', path: '/blog' },
-      { name: 'Help Center', path: '/help' },
     ],
     Legal: [
       { name: 'Privacy Policy', path: '/privacy' },
-      { name: 'Terms of Service', path: '/terms' },
-      { name: 'Cookie Policy', path: '/cookies' },
-      { name: 'GDPR', path: '/gdpr' },
+      { name: 'Terms & Conditions', path: '/terms' },
+      { name: 'Disclaimer', path: '/disclaimer' },
     ],
     Resources: [
       { name: 'API Documentation', path: '/api' },
@@ -41,11 +39,11 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">H</span>
+                <span className="text-white font-bold text-lg">B</span>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-foreground">Hamxa Tech</h3>
-                <p className="text-xs text-muted-foreground">Professional Tools</p>
+                <h3 className="text-lg font-bold text-foreground">Bulks Tool Pro</h3>
+                <p className="text-xs text-muted-foreground">by Hamxa Tech</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground mb-6 leading-relaxed">

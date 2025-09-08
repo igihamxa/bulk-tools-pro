@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Users, Target, Award, Heart } from 'lucide-react';
+import { Users, Target, Award, Heart, Wrench, Shield, Globe } from 'lucide-react';
 
 const About = () => {
   return (
@@ -11,54 +11,124 @@ const About = () => {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            About Hamxa Tech Tools
+            About Bulks Tool Pro
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We're passionate about creating powerful, user-friendly tools that help people work more efficiently with their digital files.
+            Professional web tools designed to simplify your digital workflow. Fast, secure, and completely free file processing for everyone.
           </p>
         </div>
 
-        {/* Mission Section */}
+        {/* Owner Section */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div>
-            <h2 className="text-3xl font-bold text-foreground mb-6">Our Mission</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-6">Meet the Founder</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              At Hamxa Tech, we believe that everyone should have access to professional-grade file processing tools without the complexity or cost barriers.
+              <strong>Ameer Hamza</strong>, the visionary behind Bulks Tool Pro, brings years of experience in web development and digital innovation. 
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Passionate about creating tools that solve real-world problems, Ameer founded Hamxa Tech with a mission to democratize access to professional-grade file processing tools.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Our mission is to democratize access to powerful file conversion, compression, and editing tools through intuitive web-based applications that work seamlessly across all devices.
+              "I believe everyone deserves access to powerful, easy-to-use tools without the complexity or cost barriers." - Ameer Hamza
             </p>
           </div>
           <div className="bg-gradient-hero rounded-2xl p-8 text-center">
-            <div className="text-4xl mb-4">🚀</div>
-            <h3 className="text-xl font-semibold text-foreground mb-2">Innovation First</h3>
-            <p className="text-muted-foreground">
-              Constantly pushing the boundaries of what's possible with web-based file processing
+            <div className="text-4xl mb-4">👨‍💻</div>
+            <h3 className="text-xl font-semibold text-foreground mb-2">Ameer Hamza</h3>
+            <p className="text-muted-foreground mb-2">Founder & CEO</p>
+            <p className="text-sm text-muted-foreground">
+              Web Developer | Tech Innovator | Problem Solver
             </p>
+          </div>
+        </div>
+
+        {/* Our Tools Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-foreground text-center mb-12">Our Tool Categories</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="text-center p-6 bg-card rounded-xl border border-border">
+              <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📄</span>
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">PDF Tools</h3>
+              <p className="text-sm text-muted-foreground">
+                Merge, split, compress, and convert PDF files with ease
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-card rounded-xl border border-border">
+              <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🖼️</span>
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Image Tools</h3>
+              <p className="text-sm text-muted-foreground">
+                Resize, compress, convert, and edit images in multiple formats
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-card rounded-xl border border-border">
+              <div className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🎥</span>
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Video Tools</h3>
+              <p className="text-sm text-muted-foreground">
+                Convert, compress, and edit video files for any platform
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-card rounded-xl border border-border">
+              <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🎵</span>
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Audio Tools</h3>
+              <p className="text-sm text-muted-foreground">
+                Convert, compress, and enhance audio files effortlessly
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-card rounded-xl border border-border">
+              <div className="w-16 h-16 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🔄</span>
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">File Converters</h3>
+              <p className="text-sm text-muted-foreground">
+                Universal file conversion between hundreds of formats
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-card rounded-xl border border-border">
+              <div className="w-16 h-16 bg-teal-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Wrench className="w-8 h-8 text-teal-500" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Utility Tools</h3>
+              <p className="text-sm text-muted-foreground">
+                Additional productivity tools for various file operations
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Values */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-foreground text-center mb-12">Our Values</h2>
+          <h2 className="text-3xl font-bold text-foreground text-center mb-12">Why Choose Bulks Tool Pro</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">User-Centric</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-2">User-Friendly</h3>
               <p className="text-sm text-muted-foreground">
-                Every decision we make is guided by what's best for our users
+                Intuitive interface designed for users of all skill levels
               </p>
             </div>
             
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Target className="w-8 h-8 text-primary" />
+                <Shield className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Precision</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Secure & Private</h3>
               <p className="text-sm text-muted-foreground">
-                Accurate, reliable results with every file you process
+                Your files are processed securely and never stored on our servers
               </p>
             </div>
             
@@ -66,42 +136,36 @@ const About = () => {
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Excellence</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-2">High Quality</h3>
               <p className="text-sm text-muted-foreground">
-                Committed to delivering the highest quality tools and experience
+                Professional-grade results with advanced processing algorithms
               </p>
             </div>
             
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-8 h-8 text-primary" />
+                <Globe className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Accessibility</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Free & Accessible</h3>
               <p className="text-sm text-muted-foreground">
-                Free, fast, and accessible tools for everyone, everywhere
+                Completely free tools accessible from anywhere, anytime
               </p>
             </div>
           </div>
         </div>
 
-        {/* Team Section */}
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-6">Our Team</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12">
-            A diverse group of engineers, designers, and product experts working together to build the future of file processing.
+        {/* Mission Section */}
+        <div className="text-center bg-secondary/50 rounded-2xl p-8">
+          <h2 className="text-2xl font-bold text-foreground mb-4">Our Mission</h2>
+          <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed mb-6">
+            To provide everyone with access to professional-grade file processing tools that are fast, secure, and completely free. 
+            We believe that powerful tools shouldn't be locked behind paywalls or complex software installations.
           </p>
-          
-          <div className="bg-secondary/50 rounded-2xl p-8">
-            <h3 className="text-xl font-semibold text-foreground mb-4">Join Our Mission</h3>
-            <p className="text-muted-foreground mb-6">
-              Interested in working with us? We're always looking for talented individuals who share our passion for creating exceptional user experiences.
-            </p>
-            <a 
-              href="mailto:careers@hamxatech.com"
-              className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary-hover transition-colors"
-            >
-              Get In Touch
-            </a>
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <span className="px-4 py-2 bg-primary/10 text-primary rounded-full">🚀 Innovation</span>
+            <span className="px-4 py-2 bg-primary/10 text-primary rounded-full">🔒 Security</span>
+            <span className="px-4 py-2 bg-primary/10 text-primary rounded-full">⚡ Speed</span>
+            <span className="px-4 py-2 bg-primary/10 text-primary rounded-full">🌍 Accessibility</span>
           </div>
         </div>
       </main>

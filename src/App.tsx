@@ -9,6 +9,10 @@ import ToolPage from "./pages/ToolPage";
 import CategoryPage from "./pages/CategoryPage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsConditions from "./pages/TermsConditions";
+import Disclaimer from "./pages/Disclaimer";
 
 const queryClient = new QueryClient();
 
@@ -28,13 +32,10 @@ const App = () => (
           <Route path="/converters" element={<CategoryPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/account" element={<Contact />} />
-          <Route path="/blog" element={<Contact />} />
-          <Route path="/help" element={<Contact />} />
-          <Route path="/privacy" element={<Contact />} />
-          <Route path="/terms" element={<Contact />} />
-          <Route path="/cookies" element={<Contact />} />
-          <Route path="/gdpr" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsConditions />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/api" element={<Contact />} />
           <Route path="/tutorials" element={<Contact />} />
           <Route path="/status" element={<Contact />} />
