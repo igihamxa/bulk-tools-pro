@@ -1,4 +1,4 @@
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, useLocation } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -8,7 +8,9 @@ import { pdfTools, imageTools, videoTools, audioTools, allTools } from '@/data/t
 
 const CategoryPage = () => {
   const { category } = useParams<{ category: string }>();
-  
+  const location = useLocation();
+  const routeCategory = (category as string | undefined) ?? location.pathname.slice(1);
+
   const categoryData = {
     'pdf-tools': {
       title: 'PDF Tools',
@@ -42,7 +44,7 @@ const CategoryPage = () => {
     },
   };
 
-  const currentCategory = category ? categoryData[category as keyof typeof categoryData] : null;
+  const currentCategory = routeCategory ? categoryData[routeCategory as keyof typeof categoryData] : null;
   
   if (!currentCategory) {
     return <Navigate to="/404" replace />;
