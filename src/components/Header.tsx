@@ -26,10 +26,10 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">H</span>
+              <span className="text-white font-bold text-lg">B</span>
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-foreground">Hamxa Tech</h1>
+              <h1 className="text-xl font-bold text-foreground">Bulks Tool Pro</h1>
               <p className="text-xs text-muted-foreground -mt-1">Professional Tools</p>
             </div>
           </Link>
