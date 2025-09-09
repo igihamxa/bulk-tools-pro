@@ -4,16 +4,26 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import FileUpload from '@/components/FileUpload';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { allTools } from '@/data/tools';
+import { useFileProcessor } from '@/hooks/useFileProcessor';
 import { useState } from 'react';
 
 const ToolPage = () => {
   const { toolId } = useParams<{ toolId: string }>();
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const [isProcessing, setIsProcessing] = useState(false);
+  const [outputFormat, setOutputFormat] = useState('');
+  const [quality, setQuality] = useState('high');
+  const [textInput, setTextInput] = useState('');
+  const [selectedVoice, setSelectedVoice] = useState('Aria');
+  
+  const { processFile, generateSpeech, transcribeAudio, isProcessing } = useFileProcessor();
   
   const tool = allTools.find(t => t.id === toolId);
   
@@ -25,14 +35,24 @@ const ToolPage = () => {
     setUploadedFiles(files);
   };
 
-  const handleProcess = () => {
-    setIsProcessing(true);
-    // Simulate processing
-    setTimeout(() => {
-      setIsProcessing(false);
-      // Here you would normally trigger a download
-      alert('Processing complete! In a real app, the file would download now.');
-    }, 3000);
+  const handleProcess = async () => {
+    if (tool.id === 'text-to-speech') {
+      await generateSpeech(textInput, selectedVoice);
+    } else if (tool.id === 'speech-to-text') {
+      if (uploadedFiles.length > 0) {
+        const transcription = await transcribeAudio(uploadedFiles[0]);
+        if (transcription) {
+          setTextInput(transcription);
+        }
+      }
+    } else {
+      if (uploadedFiles.length > 0) {
+        await processFile(uploadedFiles[0], tool.id, {
+          outputFormat,
+          quality
+        });
+      }
+    }
   };
 
   const getAcceptedTypes = () => {
@@ -41,16 +61,26 @@ const ToolPage = () => {
         return { 'application/pdf': ['.pdf'] };
       case 'image':
         return { 
-          'image/*': ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'],
+          'image/*': ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.tiff', '.svg'],
         };
       case 'video':
         return {
-          'video/*': ['.mp4', '.avi', '.mov', '.wmv', '.flv', '.webm'],
+          'video/*': ['.mp4', '.avi', '.mov', '.wmv', '.flv', '.webm', '.mkv', '.m4v'],
         };
       case 'audio':
         return {
-          'audio/*': ['.mp3', '.wav', '.flac', '.aac', '.ogg'],
+          'audio/*': ['.mp3', '.wav', '.flac', '.aac', '.ogg', '.m4a', '.wma'],
         };
+      case 'converter':
+        // Accept multiple types for converters
+        if (tool.id.includes('pdf')) return { 'application/pdf': ['.pdf'] };
+        if (tool.id.includes('word')) return { 'application/*': ['.doc', '.docx'] };
+        if (tool.id.includes('excel')) return { 'application/*': ['.xls', '.xlsx'] };
+        if (tool.id.includes('ppt')) return { 'application/*': ['.ppt', '.pptx'] };
+        if (tool.id.includes('image')) return { 'image/*': ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'] };
+        if (tool.id.includes('video')) return { 'video/*': ['.mp4', '.avi', '.mov', '.wmv', '.flv', '.webm'] };
+        if (tool.id.includes('audio')) return { 'audio/*': ['.mp3', '.wav', '.flac', '.aac', '.ogg'] };
+        return {};
       default:
         return {};
     }
@@ -91,19 +121,71 @@ const ToolPage = () => {
             </TabsList>
             
             <TabsContent value="upload" className="space-y-8">
+              {/* Text to Speech Input */}
+              {tool.id === 'text-to-speech' && (
+                <Card className="p-8">
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="text-input">Text to Convert</Label>
+                      <Textarea
+                        id="text-input"
+                        placeholder="Enter the text you want to convert to speech..."
+                        value={textInput}
+                        onChange={(e) => setTextInput(e.target.value)}
+                        className="min-h-[100px]"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="voice-select">Voice</Label>
+                      <Select value={selectedVoice} onValueChange={setSelectedVoice}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a voice" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Aria">Aria (Female)</SelectItem>
+                          <SelectItem value="Roger">Roger (Male)</SelectItem>
+                          <SelectItem value="Sarah">Sarah (Female)</SelectItem>
+                          <SelectItem value="Laura">Laura (Female)</SelectItem>
+                          <SelectItem value="Charlie">Charlie (Male)</SelectItem>
+                          <SelectItem value="George">George (Male)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </Card>
+              )}
+
+              {/* Speech to Text Results */}
+              {tool.id === 'speech-to-text' && textInput && (
+                <Card className="p-8">
+                  <div className="space-y-4">
+                    <Label>Transcription Result</Label>
+                    <Textarea
+                      value={textInput}
+                      onChange={(e) => setTextInput(e.target.value)}
+                      className="min-h-[100px]"
+                      placeholder="Transcribed text will appear here..."
+                    />
+                  </div>
+                </Card>
+              )}
+
               {/* File Upload */}
-              <Card className="p-8">
-                <FileUpload
-                  accept={getAcceptedTypes()}
-                  maxFiles={tool.id.includes('merge') ? 10 : 1}
-                  onFilesSelected={handleFilesSelected}
-                  title={`Upload your ${tool.category.toUpperCase()} files`}
-                  description={`Drop your files here or click to browse`}
-                />
-              </Card>
+              {tool.id !== 'text-to-speech' && (
+                <Card className="p-8">
+                  <FileUpload
+                    accept={getAcceptedTypes()}
+                    maxFiles={tool.id.includes('merge') || tool.id.includes('joiner') ? 10 : 1}
+                    onFilesSelected={handleFilesSelected}
+                    title={tool.id === 'text-to-speech' ? 'No file needed for text-to-speech' : `Upload your ${tool.category.toUpperCase()} files`}
+                    description={tool.id === 'text-to-speech' ? 'Use the text input above instead' : `Drop your files here or click to browse`}
+                  />
+                </Card>
+              )}
 
               {/* Process Button */}
-              {uploadedFiles.length > 0 && (
+              {((tool.id === 'text-to-speech' && textInput.trim()) || 
+                (tool.id !== 'text-to-speech' && uploadedFiles.length > 0)) && (
                 <div className="text-center">
                   <Button
                     size="lg"
@@ -119,7 +201,7 @@ const ToolPage = () => {
                     ) : (
                       <>
                         <Download className="w-4 h-4 mr-2" />
-                        Process & Download
+                        {tool.id === 'text-to-speech' ? 'Generate Audio' : 'Process & Download'}
                       </>
                     )}
                   </Button>
@@ -135,26 +217,61 @@ const ToolPage = () => {
                 </div>
                 <div className="grid gap-4">
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-2 block">
-                      Output Quality
-                    </label>
-                    <select className="w-full p-2 border border-border rounded-lg bg-background">
-                      <option>High Quality</option>
-                      <option>Medium Quality</option>
-                      <option>Low Quality (Smaller File)</option>
-                    </select>
+                    <Label htmlFor="quality-select">Output Quality</Label>
+                    <Select value={quality} onValueChange={setQuality}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select quality" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="high">High Quality</SelectItem>
+                        <SelectItem value="medium">Medium Quality</SelectItem>
+                        <SelectItem value="low">Low Quality (Smaller File)</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
-                  <div>
-                    <label className="text-sm font-medium text-foreground mb-2 block">
-                      Output Format
-                    </label>
-                    <select className="w-full p-2 border border-border rounded-lg bg-background">
-                      <option>Same as Input</option>
-                      <option>PDF</option>
-                      <option>JPG</option>
-                      <option>PNG</option>
-                    </select>
-                  </div>
+                  {tool.category === 'converter' && (
+                    <div>
+                      <Label htmlFor="format-select">Output Format</Label>
+                      <Select value={outputFormat} onValueChange={setOutputFormat}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select output format" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {tool.id.includes('image') && (
+                            <>
+                              <SelectItem value="jpg">JPG</SelectItem>
+                              <SelectItem value="png">PNG</SelectItem>
+                              <SelectItem value="webp">WEBP</SelectItem>
+                              <SelectItem value="gif">GIF</SelectItem>
+                            </>
+                          )}
+                          {tool.id.includes('video') && (
+                            <>
+                              <SelectItem value="mp4">MP4</SelectItem>
+                              <SelectItem value="avi">AVI</SelectItem>
+                              <SelectItem value="mov">MOV</SelectItem>
+                              <SelectItem value="webm">WEBM</SelectItem>
+                            </>
+                          )}
+                          {tool.id.includes('audio') && (
+                            <>
+                              <SelectItem value="mp3">MP3</SelectItem>
+                              <SelectItem value="wav">WAV</SelectItem>
+                              <SelectItem value="flac">FLAC</SelectItem>
+                              <SelectItem value="aac">AAC</SelectItem>
+                            </>
+                          )}
+                          {tool.id.includes('pdf') && (
+                            <>
+                              <SelectItem value="pdf">PDF</SelectItem>
+                              <SelectItem value="jpg">JPG</SelectItem>
+                              <SelectItem value="png">PNG</SelectItem>
+                            </>
+                          )}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
                 </div>
               </Card>
             </TabsContent>
