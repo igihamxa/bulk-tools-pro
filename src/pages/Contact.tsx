@@ -102,10 +102,10 @@ const Contact = () => {
                     For general inquiries and support
                   </p>
                   <a 
-                    href="mailto:support@hamxatech.com"
+                    href="mailto:hamxatechofficial@gmail.com"
                     className="text-primary hover:underline font-medium"
                   >
-                    support@hamxatech.com
+                    hamxatechofficial@gmail.com
                   </a>
                 </div>
               </div>
@@ -117,13 +117,18 @@ const Contact = () => {
                   <MessageSquare className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">Live Chat</h3>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">Telegram Chat</h3>
                   <p className="text-muted-foreground mb-2">
-                    Chat with our support team
+                    Connect with us on Telegram
                   </p>
-                  <p className="text-sm text-muted-foreground">
-                    Available 24/7 • Average response: 2 minutes
-                  </p>
+                  <a 
+                    href="https://t.me/hamxatech"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-medium"
+                  >
+                    t.me/hamxatech
+                  </a>
                 </div>
               </div>
             </Card>

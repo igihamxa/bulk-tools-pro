@@ -33,12 +33,24 @@ const About = () => {
             </p>
           </div>
           <div className="bg-gradient-hero rounded-2xl p-8 text-center">
-            <div className="text-4xl mb-4">👨‍💻</div>
+            <img 
+              src="/lovable-uploads/112d482c-5da9-4306-808f-b21716c85435.png" 
+              alt="Ameer Hamza - Founder & CEO of Hamxa Tech"
+              className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-white/20"
+            />
             <h3 className="text-xl font-semibold text-foreground mb-2">Ameer Hamza</h3>
             <p className="text-muted-foreground mb-2">Founder & CEO</p>
             <p className="text-sm text-muted-foreground">
               Web Developer | Tech Innovator | Problem Solver
             </p>
+            <div className="mt-4 space-y-2">
+              <p className="text-sm text-muted-foreground">
+                📧 <a href="mailto:hamxatechofficial@gmail.com" className="text-primary hover:underline">hamxatechofficial@gmail.com</a>
+              </p>
+              <p className="text-sm text-muted-foreground">
+                📱 <a href="https://t.me/hamxatech" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">t.me/hamxatech</a>
+              </p>
+            </div>
           </div>
         </div>
 
