@@ -143,7 +143,7 @@ const Contact = () => {
                   <p className="text-muted-foreground mb-2">
                     For urgent technical issues
                   </p>
-                  <p className="text-primary font-medium">+1 (555) 123-4567</p>
+                  <p className="text-primary font-medium">+9203173890161</p>
                   <p className="text-sm text-muted-foreground">
                     Mon-Fri: 9 AM - 6 PM EST
                   </p>
@@ -159,9 +159,9 @@ const Contact = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Our Office</h3>
                   <p className="text-muted-foreground">
-                    123 Tech Street<br />
-                    San Francisco, CA 94105<br />
-                    United States
+                    68100 Data Autos<br />
+                    Mirpurkhas Road Sanghar<br />
+                    Sindh, Pakistan
                   </p>
                 </div>
               </div>
