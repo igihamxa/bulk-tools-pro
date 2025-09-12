@@ -68,7 +68,7 @@ export const pdfTools: Tool[] = [
   {
     id: 'edit-pdf',
     title: 'Edit PDF Forms',
-    description: 'Fill PDF forms by adding text fields, checkboxes, signatures and interactive elements',
+    description: 'Fill PDF forms by adding text fields, checkboxes, signatures and interactive elements. Free online PDF form filler, editor, signature tool.',
     icon: '✏️',
     category: 'pdf',
     path: '/tools/edit-pdf',

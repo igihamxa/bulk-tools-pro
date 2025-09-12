@@ -11,8 +11,16 @@ import { Textarea } from '@/components/ui/textarea';
 import { Download, Type, Square, Edit3, MousePointer } from 'lucide-react';
 import { toast } from 'sonner';
 
-// Set up PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+// Set up PDF.js worker with fallback
+try {
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+    'pdfjs-dist/build/pdf.worker.min.js',
+    import.meta.url,
+  ).toString();
+} catch (error) {
+  // Fallback to jsdelivr CDN
+  pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+}
 
 interface PDFField {
   id: string;
@@ -45,13 +53,23 @@ export const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ file }) => {
     if (file) {
       const url = URL.createObjectURL(file);
       setPdfUrl(url);
-      return () => URL.revokeObjectURL(url);
+      return () => {
+        URL.revokeObjectURL(url);
+        setFields([]);
+        setSelectedField(null);
+        setPageNumber(1);
+      };
     }
   }, [file]);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
-    toast.success('PDF loaded successfully! Click anywhere to add form fields.');
+    toast.success('PDF loaded successfully! Select a tool and click on the PDF to add form fields.');
+  };
+
+  const onDocumentLoadError = (error: Error) => {
+    console.error('PDF loading error:', error);
+    toast.error('Failed to load PDF. Please try uploading a different file.');
   };
 
   const onPageClick = useCallback((event: React.MouseEvent) => {
@@ -287,7 +305,9 @@ export const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ file }) => {
                 <Document
                   file={pdfUrl}
                   onLoadSuccess={onDocumentLoadSuccess}
+                  onLoadError={onDocumentLoadError}
                   loading={<div className="flex justify-center p-8">Loading PDF...</div>}
+                  error={<div className="flex justify-center p-8 text-red-500">Error loading PDF. Please try another file.</div>}
                 >
                   <Page 
                     pageNumber={pageNumber} 
