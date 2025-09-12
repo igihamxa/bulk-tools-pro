@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import FileUpload from '@/components/FileUpload';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { PDFFormEditor } from '@/components/PDFFormEditor';
 import { allTools } from '@/data/tools';
 import { useFileProcessor } from '@/hooks/useFileProcessor';
 import { useState } from 'react';
@@ -121,6 +122,11 @@ const ToolPage = () => {
             </TabsList>
             
             <TabsContent value="upload" className="space-y-8">
+              {/* PDF Form Editor */}
+              {tool.id === 'edit-pdf' && uploadedFiles.length > 0 && (
+                <PDFFormEditor file={uploadedFiles[0]} />
+              )}
+
               {/* Text to Speech Input */}
               {tool.id === 'text-to-speech' && (
                 <Card className="p-8">
@@ -177,15 +183,15 @@ const ToolPage = () => {
                     accept={getAcceptedTypes()}
                     maxFiles={tool.id.includes('merge') || tool.id.includes('joiner') ? 10 : 1}
                     onFilesSelected={handleFilesSelected}
-                    title={tool.id === 'text-to-speech' ? 'No file needed for text-to-speech' : `Upload your ${tool.category.toUpperCase()} files`}
-                    description={tool.id === 'text-to-speech' ? 'Use the text input above instead' : `Drop your files here or click to browse`}
+                    title={tool.id === 'text-to-speech' ? 'No file needed for text-to-speech' : tool.id === 'edit-pdf' ? 'Upload PDF to Edit' : `Upload your ${tool.category.toUpperCase()} files`}
+                    description={tool.id === 'text-to-speech' ? 'Use the text input above instead' : tool.id === 'edit-pdf' ? 'Upload a PDF file to add interactive form fields and fill them out' : `Drop your files here or click to browse`}
                   />
                 </Card>
               )}
 
               {/* Process Button */}
               {((tool.id === 'text-to-speech' && textInput.trim()) || 
-                (tool.id !== 'text-to-speech' && uploadedFiles.length > 0)) && (
+                (tool.id !== 'text-to-speech' && tool.id !== 'edit-pdf' && uploadedFiles.length > 0)) && (
                 <div className="text-center">
                   <Button
                     size="lg"
