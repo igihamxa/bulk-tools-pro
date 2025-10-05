@@ -11,16 +11,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Download, Type, Square, Edit3, MousePointer } from 'lucide-react';
 import { toast } from 'sonner';
 
-// Set up PDF.js worker with fallback
-try {
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.js',
-    import.meta.url,
-  ).toString();
-} catch (error) {
-  // Fallback to jsdelivr CDN
-  pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
-}
+// Set up PDF.js worker - use CDN for reliability
+pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 interface PDFField {
   id: string;
